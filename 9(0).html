@@ -12,7 +12,7 @@
         }
         function showCoords(eventObj) {
             let map = document.getElementById("coords");
-            let x = eventObj.clientX;
+            let x = eventObj.clientX; // координаты курсора
             let y = eventObj.clientY;
             map.innerHTML = "Map coordinates: " + x + ", " + y;
         }
