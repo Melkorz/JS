@@ -1,7 +1,5 @@
-let name = "Ilya";
-
-console.log( `hello ${1}` ); // ?
-
-console.log( `hello ${"name"}` ); // ?
-
-console.log( `hello ${name}` ); // ?
+var addOne = function (x) {
+    return x + 1;
+};
+var six = addOne(5);
+console.log(six); // 6
