@@ -131,7 +131,25 @@ class Histogram{
             ([l,n]) => `${1}: ${"#".repeat(Math.round(n))} ${(n.toFixed(2))}%`
         );
 
-        // Возвратить сцеплённые строки, разделённые символами новой строки
-        
+        // Вернуть сцеплённые строки в форме новых строк 
+        return lines.join("\n");  
+    }
+
+    // Асинхронная (возвращающая Promise - переводится "Обещание") функция создаёт объект гистограммы (Histogram),
+    // читает асинхронным образом порции текста из стандартного ввода
+    // и добавляет их к гистограмме.
+    // Достигнув конца потока данных, 
+    // функция возвращает итоговую гистограмму
+    async function histogram() {
+        process.stdin.setEncouding("utf-8"); // Читать строки в текстовом формате, а не в байтах
+        for await (let chunk of process.stdin){
+            histogram.add(chunk)
+        }
+        return histogram;
     }
 }
+
+// Главное тело программы
+// Создаёт объект Histogram из стандартного ввода
+// и выводит гистограмму
+histogramFromStdin().then(histogram => {console.log(histogram.toString()); });
